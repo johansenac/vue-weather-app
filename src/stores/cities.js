@@ -11,20 +11,20 @@ export const useCitiesStore = defineStore('cities', {
     //   - currentTemperature: current temperature (in degrees F)
     //   - dailyHigh: high temperature (in degrees F) for today
     //   - dailyLow: low temperature (in degrees F) for today
-    weatherDataCauseError: []
+    weatherData: []
   }),
   
   // getters return data from the data store
   getters: {
-    getNumberOfCities: (state) => { return state.weatherDataCauseError.length }
+    getNumberOfCities: (state) => { return state.weatherData.length }
   },
   
   // actions are operations that change the state
   actions: {
     addCity(city, state, country, summary, currentTemp, high, low) { 
       // Check if the city is already saved
-      if (this.weatherDataCauseError.find(({ cityName }) => cityName === city) === undefined) {
-        this.weatherDataCauseError.push({
+      if (this.weatherData.find(({ cityName }) => cityName === city) === undefined) {
+        this.weatherData.push({
           'cityName': city,
           'stateName': state,
           'countryAbbreviation': country,
@@ -36,8 +36,8 @@ export const useCitiesStore = defineStore('cities', {
       }
     },
     clearAllCities() {
-      // Setting the `weatherDataCauseError` array to a length of zero clears it
-      this.weatherDataCauseError.length = 0
+      // Setting the `weatherData` array to a length of zero clears it
+      this.weatherData.length = 0
     }
   }
 })
